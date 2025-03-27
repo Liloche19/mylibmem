@@ -8,6 +8,6 @@ int main(void)
     str[0] = 'a';
     str[1] = 'b';
     printf("%s\n", str);
-    free_all();
+    my_free(&str[1]);
     return 0;
 }

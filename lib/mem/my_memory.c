@@ -21,14 +21,15 @@ memory_t *add_pointer(void *ptr, unsigned long size, memory_t *pointers)
     return pointers;
 }
 
-memory_t *free_pointer(void *ptr, memory_t *pointers)
+memory_t *free_pointer(unsigned long ptr, memory_t *pointers)
 {
     memory_t *temp = NULL;
 
     if (pointers == NULL)
         return NULL;
-    if (pointers->ptr == ptr){
-        free(ptr);
+    if ((unsigned long) pointers->ptr <= ptr &&
+        ptr <= (unsigned long) pointers->ptr + pointers->bytes){
+        free(pointers->ptr);
         temp = pointers->next;
         free(pointers);
         return temp;
@@ -56,6 +57,6 @@ int my_memory_manager(void *ptr, unsigned long size, bool add)
     else if (size > 0)
         free_all_pointers(pointers);
     else
-        pointers = free_pointer(ptr, pointers);
+        pointers = free_pointer((unsigned long) ptr, pointers);
     return 0;
 }
