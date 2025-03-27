@@ -7,7 +7,7 @@ void *my_malloc(unsigned long size)
     ptr = malloc(size);
     if (ptr == NULL){
         free_all();
-        return NULL;
+        exit(ERROR_STATUS);
     }
     my_memory_manager(ptr, size, true);
     return ptr;

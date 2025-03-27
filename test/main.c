@@ -4,9 +4,9 @@ int main(void)
 {
     char *str = NULL;
 
-    str = my_malloc(sizeof(char) * 2);
-    str[1] = '\0';
+    str = my_calloc(sizeof(char) * 3);
     str[0] = 'a';
+    str[1] = 'b';
     printf("%s\n", str);
     free_all();
     return 0;

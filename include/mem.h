@@ -1,6 +1,8 @@
 #ifndef MEM_H
     #define MEM_H
 
+    #define ERROR_STATUS 84
+
     #include <stdlib.h>
     #include <stdbool.h>
     #include <stdio.h>
@@ -18,6 +20,7 @@ int my_memory_manager(void *ptr, unsigned long size, bool add);
 
 // malloc functions
 void *my_malloc(unsigned long size);
+void *my_calloc(unsigned long size);
 
 // free functions
 void my_free(void *ptr);
