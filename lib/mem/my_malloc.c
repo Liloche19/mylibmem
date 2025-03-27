@@ -9,6 +9,6 @@ void *my_malloc(unsigned long size)
         free_all();
         exit(ERROR_STATUS);
     }
-    my_memory_manager(ptr, size, true);
+    my_memory_manager(ptr, size, MALLOC);
     return ptr;
 }

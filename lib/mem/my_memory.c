@@ -48,15 +48,32 @@ void free_all_pointers(memory_t *pointers)
     return;
 }
 
-int my_memory_manager(void *ptr, unsigned long size, bool add)
+memory_t *get_infos(unsigned long ptr, memory_t *pointers)
+{
+    if (pointers == NULL)
+        return NULL;
+    if ((unsigned long) pointers->ptr <= ptr &&
+        ptr <= (unsigned long) pointers->ptr + pointers->bytes)
+        return pointers;
+    return get_infos(ptr, pointers->next);
+}
+
+memory_t *my_memory_manager(void *ptr, unsigned long size, function_t usage)
 {
     static memory_t *pointers = NULL;
 
-    if (add)
-        pointers = add_pointer(ptr, size, pointers);
-    else if (size > 0)
-        free_all_pointers(pointers);
-    else
-        pointers = free_pointer((unsigned long) ptr, pointers);
-    return 0;
+    switch (usage){
+        case MALLOC:
+            pointers = add_pointer(ptr, size, pointers);
+            return NULL;
+        case FREE:
+            pointers = free_pointer((unsigned long) ptr, pointers);
+            return NULL;
+        case FREE_ALL:
+            free_all_pointers(pointers);
+            return NULL;
+        case REALLOC:
+            return get_infos((unsigned long) ptr, pointers);
+    }
+    return NULL;
 }

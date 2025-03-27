@@ -9,6 +9,13 @@
 
 typedef struct memory_s memory_t;
 
+typedef enum function_s {
+    MALLOC,
+    FREE,
+    FREE_ALL,
+    REALLOC
+} function_t;
+
 struct memory_s {
     void *ptr;
     unsigned long bytes;
@@ -16,11 +23,14 @@ struct memory_s {
 };
 
 // Memory manager
-int my_memory_manager(void *ptr, unsigned long size, bool add);
+memory_t *my_memory_manager(void *ptr, unsigned long size, function_t usage);
 
 // malloc functions
 void *my_malloc(unsigned long size);
 void *my_calloc(unsigned long size);
+
+// realloc function
+void *my_realloc(void *ptr, unsigned long size);
 
 // free functions
 void my_free(void *ptr);
