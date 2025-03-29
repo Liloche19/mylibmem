@@ -1,4 +1,4 @@
 *.o
 *.a
 a.out
-mem
+main.c
