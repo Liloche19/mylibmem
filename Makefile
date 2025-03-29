@@ -2,6 +2,7 @@ SRC	=	lib/mem/my_malloc.c\
 		lib/mem/my_calloc.c\
 		lib/mem/my_realloc.c\
 		lib/mem/my_free.c\
+		lib/mem/my_exit.c\
 		lib/mem/my_memory.c\
 
 TEST	=	test/main.c

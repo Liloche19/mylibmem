@@ -2,7 +2,9 @@
     #define MEM_H
 
     #define ERROR_STATUS 84
+    #define SUCCESS_CODE 0
 
+    #include <unistd.h>
     #include <stdlib.h>
     #include <stdbool.h>
     #include <stdio.h>
@@ -31,6 +33,9 @@ void *my_calloc(unsigned long size);
 
 // realloc function
 void *my_realloc(void *ptr, unsigned long size);
+
+// exit function
+void my_exit(char *message, int code);
 
 // free functions
 void my_free(void *ptr);
