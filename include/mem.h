@@ -1,13 +1,15 @@
 #ifndef MEM_H
     #define MEM_H
 
-    #define ERROR_STATUS 84
-    #define SUCCESS_CODE 0
-
     #include <unistd.h>
     #include <stdlib.h>
     #include <stdbool.h>
     #include <stdio.h>
+
+    #define ERROR_STATUS 84
+    #define SUCCESS_CODE 0
+    #define MALLOC_FAILED_STATUS ERROR_STATUS
+
 
 typedef struct memory_s memory_t;
 
@@ -25,7 +27,8 @@ struct memory_s {
 };
 
 // Memory manager
-memory_t *my_memory_manager(void *ptr, unsigned long size, function_t usage);
+memory_t *my_memory_manager(void *ptr, unsigned long size, function_t usage,
+    bool *failed);
 
 // malloc functions
 void *my_malloc(unsigned long size);

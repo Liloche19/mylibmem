@@ -2,12 +2,20 @@
 
 void free_all(void)
 {
-    my_memory_manager(NULL, 1, FREE_ALL);
+    bool failed = false;
+
+    my_memory_manager(NULL, 1, FREE_ALL, &failed);
+    if (failed)
+        return;
     return;
 }
 
 void my_free(void *ptr)
 {
-    my_memory_manager(ptr, 0, FREE);
+    bool failed = false;
+
+    my_memory_manager(ptr, 0, FREE, &failed);
+    if (failed)
+        return;
     return;
 }
